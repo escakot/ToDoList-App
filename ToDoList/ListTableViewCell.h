@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  ListTableViewCell.h
 //  ToDoList
 //
 //  Created by Errol Cheong on 2017-06-13.
@@ -8,11 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ListTableViewCell : UITableViewCell
 
-
-- (IBAction)deleteItem:(id)sender;
-
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
-
