@@ -28,9 +28,9 @@
     [super viewDidLoad];
     self.todos = [[NSMutableArray alloc] init];
     // Do any additional setup after loading the view, typically from a nib.
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     
-    [self.view addGestureRecognizer:tap];
+//    [self.view addGestureRecognizer:tap];
 }
 
 -(void)dismissKeyboard
@@ -77,6 +77,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 //    NSLog(@"Hello, I was touched: %@", indexPath);
     self.itemIndex = indexPath;
+    [self.listTitleTextField resignFirstResponder];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -93,8 +94,12 @@
 - (IBAction)deleteItem:(id)sender {
 //    NSLog(@"%@", self.itemIndex);
 //    NSLog(@"%ld", (long)self.itemIndex.row);
-    [self.todos removeObjectAtIndex:[self.itemIndex row]];
-    [self.ListTableView reloadData];
+    if (self.itemIndex) {
+        [self.todos removeObjectAtIndex:[self.itemIndex row]];
+        [self.ListTableView reloadData];
+    }
+    //Fix bug when no todos on list
+    self.itemIndex = NULL;
 }
 
 @end

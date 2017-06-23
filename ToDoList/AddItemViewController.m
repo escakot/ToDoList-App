@@ -9,7 +9,7 @@
 #import "AddItemViewController.h"
 
 
-@interface AddItemViewController ()
+@interface AddItemViewController () <UITextFieldDelegate>
 
 @end
 
@@ -34,6 +34,11 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self.delegate didSaveNewTodo:self.textField.text];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    return YES;
+}
 
 - (IBAction)save:(id)sender {
     [self.delegate didSaveNewTodo:self.textField.text];
