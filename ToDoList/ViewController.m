@@ -10,12 +10,15 @@
 #import "ListTableViewCell.h"
 #import "AddItemViewController.h"
 
-@interface ViewController () <UITableViewDataSource, UITableViewDelegate, AddItemViewControllerDelegate>
+@interface ViewController () <UITableViewDataSource, UITableViewDelegate, AddItemViewControllerDelegate,
+    UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *ListTableView;
 
 @property (nonatomic, strong) NSMutableArray *todos;
 
 @property (nonatomic, strong) NSIndexPath *itemIndex;
+
+@property (weak, nonatomic) IBOutlet UITextField *listTitleTextField;
 
 @end
 
@@ -25,8 +28,15 @@
     [super viewDidLoad];
     self.todos = [[NSMutableArray alloc] init];
     // Do any additional setup after loading the view, typically from a nib.
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    
+    [self.view addGestureRecognizer:tap];
 }
 
+-(void)dismissKeyboard
+{
+    [self.listTitleTextField resignFirstResponder];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -50,6 +60,18 @@
     cell.titleLabel.text = todoText;
     return cell;
 }
+
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.listTitleTextField resignFirstResponder];
+//    [self.listTitleTextField endEditing:YES];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
 
 // Called after the user changes the selection.
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

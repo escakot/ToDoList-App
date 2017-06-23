@@ -66,6 +66,17 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="a1W-AK-tlj">
+                        <nil key="title"/>
+                        <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="List Title" textAlignment="center" minimumFontSize="17" id="dtF-el-7mY">
+                            <rect key="frame" x="112.5" y="7" width="150" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
+                            <connections>
+                                <outlet property="delegate" destination="BYZ-38-t0r" id="lgi-Uo-BQR"/>
+                            </connections>
+                        </textField>
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="YSx-d4-96A">
                                 <connections>
@@ -81,11 +92,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="ListTableView" destination="BO2-L4-czP" id="gMG-Tv-JxF"/>
+                        <outlet property="listTitleTextField" destination="dtF-el-7mY" id="Roy-Jf-69D"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="890" y="9"/>
+            <point key="canvasLocation" x="888.79999999999995" y="8.5457271364317844"/>
         </scene>
         <!--Add Item View Controller-->
         <scene sceneID="0sH-qM-5Ci">
